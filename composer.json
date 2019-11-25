@@ -1,0 +1,31 @@
+{
+    "name": "blueappsgroup/wordpress-auth-rank-data",
+    "description": "wordpress plugin for generate ranking",
+    "license": "proprietary",
+    "type": "wordpress-plugin",
+    "require": {
+        "php": ">=7.3",
+        "eljam/guzzle-jwt-middleware": "^0.7.0"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+        "squizlabs/php_codesniffer": "3.*",
+        "wp-coding-standards/wpcs": "2.1.*"
+    },
+    "scripts": {
+        "lint": "phpcs .",
+        "prod": "composer install --no-ansi --no-dev --no-interaction --no-progress --no-scripts --optimize-autoloader"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Ranking\\": "src/"
+        }
+    }
+}
