@@ -8,9 +8,7 @@
         "eljam/guzzle-jwt-middleware": "^0.7.0"
     },
     "require-dev": {
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
-        "squizlabs/php_codesniffer": "3.*",
-        "wp-coding-standards/wpcs": "2.1.*"
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0"
     },
     "scripts": {
         "lint": "phpcs .",
