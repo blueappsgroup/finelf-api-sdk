@@ -1,56 +1,57 @@
 <?php
 
-namespace Ranking;
+namespace Finelf;
 
 use Eljam\GuzzleJwt\JwtMiddleware;
 use Eljam\GuzzleJwt\Manager\JwtManager;
-use Eljam\GuzzleJwt\Strategy\Auth\JsonAuthStrategy;
-use Eljam\GuzzleJwt\Strategy\Auth\QueryAuthStrategy;
+use Finelf\Strategies\AuthStrategy;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
-use function var_dump;
 
-/**
- * Class ApiClient
- *
- * @package Ranking
- */
 class ApiClient {
-
     private $username;
     private $password;
+    private $clientID;
+    private $clientSecret;
     private $uri;
 
     public function __construct(array $authData) {
-        $this->username = $authData['username'];
-        $this->password = $authData['password'];
-        $this->uri      = $authData['uri'];
+        $this->username     = $authData['username'];
+        $this->password     = $authData['password'];
+        $this->clientID     = $authData['clientID'];
+        $this->clientSecret = $authData['clientSecret'];
+        $this->uri          = $authData['uri'];
     }
 
     public function createApiClient(): Client {
         $jwtManager = $this->createJwtManager();
         $stack      = HandlerStack::create();
-        $stack->push(new JwtMiddleware($jwtManager, 'JWT'));
+        $stack->push(new JwtMiddleware($jwtManager));
 
-        return new Client(['handler' => $stack, 'base_uri' => $this->uri]);
-    }
-
-    private function createAuthStrategy() {
-        return new JsonAuthStrategy([
-            'username' => $this->username,
-            'password' => $this->password,
+        return new Client([
+            'handler'  => $stack,
+            'base_uri' => $this->uri,
         ]);
     }
 
-    private function createClient() {
-        return new Client(['base_uri' => $this->uri]);
-    }
-
-    private function createJwtManager() {
+    private function createJwtManager(): JwtManager {
         $authClient          = $this->createClient();
         $authStrategy        = $this->createAuthStrategy();
         $persistenceStrategy = null;
 
-        return new JwtManager($authClient, $authStrategy, $persistenceStrategy, ['token_url' => '/auth/login','token_key' => 'access_token',]);
+        return new JwtManager($authClient, $authStrategy, $persistenceStrategy, ['token_url' => '/auth/login', 'token_key' => 'accessToken']);
+    }
+
+    private function createClient(): Client {
+        return new Client(['base_uri' => $this->uri]);
+    }
+
+    private function createAuthStrategy(): AuthStrategy {
+        return new AuthStrategy([
+            'username'     => $this->username,
+            'password'     => $this->password,
+            'clientID'     => $this->clientID,
+            'clientSecret' => $this->clientSecret,
+        ]);
     }
 }
