@@ -48,10 +48,10 @@ class ApiClient {
 
     private function createAuthStrategy(): AuthStrategy {
         return new AuthStrategy([
-            'username'     => $this->username,
-            'password'     => $this->password,
-            'clientID'     => $this->clientID,
-            'clientSecret' => $this->clientSecret,
+            'username'      => $this->username,
+            'password'      => $this->password,
+            'client_id'     => $this->clientID,
+            'client_secret' => $this->clientSecret,
         ]);
     }
 }

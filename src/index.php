@@ -22,7 +22,7 @@ $builder->ignorePhpDocErrors(true);
 try {
     $container = $builder->build();
 
-    $container->set()
+    $container->set();
 } catch (Exception $e) {
     error_log($e->getMessage());
 }
