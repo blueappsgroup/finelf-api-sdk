@@ -6,7 +6,7 @@ use function class_exists;
 use function ucfirst;
 
 class Api {
-    private $apiClient;
+    private $client;
 
     public function __construct(string $username, string $password, string $clientID, string $clientSecret, string $apiURL) {
         $apiClient = new ApiClient([
@@ -16,7 +16,7 @@ class Api {
             'clientSecret' => $clientSecret,
             'uri'          => $apiURL,
         ]);
-        $this->apiClient = $apiClient->createApiClient();
+        $this->client = $apiClient->createApiClient();
     }
 
 
@@ -24,7 +24,7 @@ class Api {
         $class = 'Finelf\Modules\\'.ucfirst($name);
 
         if (class_exists($class)) {
-            $this->$name = new $class($this->apiClient);
+            $this->$name = new $class($this->client);
             return $this->$name;
         }
     }
