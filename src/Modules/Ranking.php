@@ -2,10 +2,10 @@
 
 namespace Finelf\Modules;
 
-class Ranking extends BaseModule {
-    protected $apiController = 'rankings';
+class Ranking extends Module {
+    protected $baseRoute = 'rankings';
 
     public function get(int $id) {
-        return parent::get('/'.$this->apiController.'/' . $id . '/details');
+        return parent::get('/'.$this->baseRoute.'/' . $id . '/details');
     }
 }

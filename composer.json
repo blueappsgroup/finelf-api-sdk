@@ -7,8 +7,7 @@
     "homepage": "https://finelf.com",
     "require": {
         "php": ">=7.3",
-        "eljam/guzzle-jwt-middleware": "^0.7.0",
-        "php-di/php-di": "^6.0"
+        "eljam/guzzle-jwt-middleware": "^0.7.0"
     },
     "config": {
         "optimize-autoloader": true,

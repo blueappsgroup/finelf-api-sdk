@@ -4,12 +4,14 @@ namespace Finelf\Modules;
 
 use GuzzleHttp\Client;
 
-abstract class BaseModule {
+abstract class Module {
     protected $apiClient;
-    protected $apiController;
+    protected $baseRoute;
 
     public function __construct(Client $apiClient) {
         $this->apiClient = $apiClient;
+        if(!isset($this->baseRoute))
+            throw new \LogicException(get_class($this) . ' must have a $baseRoute');
     }
 
     public function get(string $uri) {
@@ -17,7 +19,7 @@ abstract class BaseModule {
             $response = $this->apiClient->get($uri);
 
             return $response->getBody();
-        } catch (\GuzzleHttp\Exception\TransferException $e) {
+        } catch (\Error $e) {
             error_log($e->getMessage());
         }
     }
