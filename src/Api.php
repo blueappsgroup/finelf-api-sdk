@@ -5,17 +5,16 @@ namespace Finelf;
 use function class_exists;
 use function ucfirst;
 
-class FinelfApi {
-    private $apiURI = 'http://localhost:3000';
+class Api {
     private $apiClient;
 
-    public function __construct($username, $password, $clientID = 'assistant', $clientSecret = 'swiniokaras') {
+    public function __construct(string $username, string $password, string $clientID, string $clientSecret, string $apiURL) {
         $apiClient = new ApiClient([
             'username'     => $username,
             'password'     => $password,
             'clientID'     => $clientID,
             'clientSecret' => $clientSecret,
-            'uri'          => $this->apiURI,
+            'uri'          => $apiURL,
         ]);
         $this->apiClient = $apiClient->createApiClient();
     }

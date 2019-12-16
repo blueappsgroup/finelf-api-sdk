@@ -1,0 +1,13 @@
+{
+    "name": "blueappsgroup/finelf-api-sdk-example",
+    "type": "project",
+    "require": {
+    	"blueappsgroup/finelf-api-sdk": "*"
+    },
+    "repositories": [
+        {
+            "url": "git@github.com:blueappsgroup/finelf-api-sdk.git",
+            "type": "vcs"
+        }
+    ]
+}
