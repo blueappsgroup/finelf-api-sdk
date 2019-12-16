@@ -1,24 +1,21 @@
 {
-    "name": "blueappsgroup/finelf-api-sdk",
-    "description": "SDK for Finelf.com API",
-    "version":"0.0.19",
-    "license": "MIT",
-    "type": "library",
-    "homepage": "https://finelf.com",
+    "name": "blueappsgroup/finelf-api-sdk-example",
+    "type": "project",
     "require": {
-        "php": ">=7.3",
-        "eljam/guzzle-jwt-middleware": "^0.7.0"
+        "blueappsgroup/finelf-api-sdk": "*"
     },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "autoload": {
-        "psr-4": {
-            "Finelf\\": "src/"
+    "repositories": {
+        "blueappsgroup/finelf-api-sdk": {
+            "type": "package",
+            "package": {
+                "name": "blueappsgroup/finelf-api-sdk",
+                "version": "0.0.1",
+                "source": {
+                    "url": "https://github.com/blueappsgroup/finelf-api-sdk.git",
+                    "type": "git",
+                    "reference": "origin/master"
+                }
+            }
         }
     }
 }
