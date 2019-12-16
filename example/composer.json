@@ -4,18 +4,18 @@
     "require": {
         "blueappsgroup/finelf-api-sdk": "*"
     },
-    "repositories": [
-        {
+    "repositories": {
+        "blueappsgroup/finelf-api-sdk": {
             "type": "package",
             "package": {
                 "name": "blueappsgroup/finelf-api-sdk",
-                "version": "*",
+                "version": "0.0.1",
                 "source": {
-                    "url": "git@github.com:blueappsgroup/finelf-api-sdk.git",
+                    "url": "https://github.com/blueappsgroup/finelf-api-sdk.git",
                     "type": "git",
-                    "reference": "*"
+                    "reference": "origin/master"
                 }
             }
         }
-    ]
+    }
 }
