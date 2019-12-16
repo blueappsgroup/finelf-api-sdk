@@ -2,14 +2,10 @@
 
 namespace Finelf\Modules;
 
-use Finelf\ApiClient;
-
-class Ranking {
-    public function __construct(ApiClient $apiClient) {
-
-    }
+class Ranking extends Module {
+    protected $baseRoute = 'rankings';
 
     public function get(int $id) {
-
+        return parent::get('/'.$this->baseRoute.'/' . $id . '/details');
     }
 }
