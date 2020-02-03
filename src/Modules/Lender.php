@@ -2,8 +2,8 @@
 
 namespace Finelf\Modules;
 
-class Ranking extends Module {
-    protected $baseRoute = 'rankings';
+class Lender extends Module {
+    protected $baseRoute = 'lenders';
 
     public function get($id) {
         return parent::get('/'.$this->baseRoute.'/' . $id);
