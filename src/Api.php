@@ -11,7 +11,7 @@ class Api {
 
     public static function getInstance(string $username, string $password, string $clientID, string $clientSecret, string $apiURL) {
         if (self::$instance === null) {
-            self::$client = new Api($username, $password, $clientID, $clientSecret, $apiURL);
+            self::$instance = new Api($username, $password, $clientID, $clientSecret, $apiURL);
         }
 
         return self::$instance;
