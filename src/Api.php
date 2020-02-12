@@ -8,7 +8,11 @@ use function ucfirst;
 class Api {
     private $client;
 
-    public function __construct(string $username, string $password, string $clientID, string $clientSecret, string $apiURL) {
+    public static function getInstance(string $username, string $password, string $clientID, string $clientSecret, string $apiURL) {
+        self::$client = new Api($username, $password, $clientID, $clientSecret, $apiURL);
+    }
+
+    private function __construct(string $username, string $password, string $clientID, string $clientSecret, string $apiURL) {
         $apiClient = new ApiClient([
             'username'     => $username,
             'password'     => $password,
