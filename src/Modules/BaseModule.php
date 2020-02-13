@@ -5,7 +5,7 @@ namespace Finelf\Modules;
 use GuzzleHttp\Client;
 use function json_decode;
 
-abstract class Module {
+abstract class BaseModule {
     protected $apiClient;
     protected $baseRoute;
 
@@ -23,7 +23,7 @@ abstract class Module {
 
             return json_decode($response->getBody());
         } catch (\Error $e) {
-            error_log($e->getMessage());
+            return error_log($e->getMessage());
         }
     }
 }
