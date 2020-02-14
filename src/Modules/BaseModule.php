@@ -5,7 +5,7 @@ namespace Finelf\Modules;
 use GuzzleHttp\Client;
 use function json_decode;
 
-abstract class Module {
+abstract class BaseModule {
     protected $apiClient;
     protected $baseRoute;
 

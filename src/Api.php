@@ -30,10 +30,12 @@ class Api {
 
 
     public function __get($name) {
-        $class = 'Finelf\Modules\\' . ucfirst($name);
+        $class = 'Finelf\Modules\\'. ucfirst($name) . 'Module';
 
         if (class_exists($class)) {
-            $this->$name = new $class($this->client);
+            if (!isset($this->$name)) {
+                $this->$name = new $class($this->client);
+            }
 
             return $this->$name;
         }
