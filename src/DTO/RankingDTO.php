@@ -4,6 +4,7 @@ namespace Finelf\DTO;
 
 class RankingDTO extends BaseDTO {
     public $name;
+    public $modifiedOn;
     public $parameters;
     public $offers;
 
