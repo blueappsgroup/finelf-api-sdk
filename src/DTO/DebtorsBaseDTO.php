@@ -6,7 +6,7 @@ class DebtorsBaseDTO extends BaseDTO {
     public $name;
     public $logo;
 
-    public function debtorsBase($debtorsBase) {
+    protected function debtorsBase($debtorsBase) {
         $this->name = $debtorsBase->name;
         $this->logo = $debtorsBase->logo;
     }

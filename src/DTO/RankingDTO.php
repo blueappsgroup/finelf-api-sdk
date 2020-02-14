@@ -7,7 +7,7 @@ class RankingDTO extends BaseDTO {
     public $parameters;
     public $offers;
 
-    public function rankingParameters($rankingParameters) {
+    protected function rankingParameters($rankingParameters) {
         if (!empty($rankingParameters)) {
             foreach ($rankingParameters as $rankingParameter) {
                 $this->parameters[$rankingParameter->priority] = new ParameterDTO($rankingParameter);
@@ -15,7 +15,7 @@ class RankingDTO extends BaseDTO {
         }
     }
 
-    public function rankingOffers($rankingOffers) {
+    protected function rankingOffers($rankingOffers) {
         if (!empty($rankingOffers)) {
             foreach ($rankingOffers as $rankingOffer) {
                 $this->offers[$rankingOffer->priority] = new OfferDTO($rankingOffer->offer);

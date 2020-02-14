@@ -10,11 +10,10 @@ class ParameterDTO extends BaseDTO {
     public $suffix;
     public $slug;
 
-    public function parameter($parameter) {
+    protected function parameter($parameter) {
         $this->name   = $parameter->name;
         $this->type   = $parameter->type;
         //$this->slug   = $parameter->slug;
-        //$this->prefix = $parameter->prefix;
-        //$this->suffix = $parameter->suffix;
+        //$this->value = !empty($parameter->prefix) ? $parameter->prefix.' ' : ''.$this->value.!empty($parameter->suffix) ? ' '.$parameter->suffix : '';
     }
 }

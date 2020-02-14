@@ -19,7 +19,7 @@ class LenderDTO extends BaseDTO {
     public $logo;
     public $offers;
 
-    public function offers($offers) {
+    protected function offers($offers) {
         if (!empty($offers)) {
             foreach ($offers as $offer) {
                 $this->offers[$offer->id] = new OfferDTO($offer);

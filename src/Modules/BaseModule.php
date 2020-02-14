@@ -23,7 +23,7 @@ abstract class BaseModule {
 
             return json_decode($response->getBody());
         } catch (\Error $e) {
-            return error_log($e->getMessage());
+            error_log($e->getMessage());
         }
     }
 }

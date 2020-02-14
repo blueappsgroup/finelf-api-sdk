@@ -13,7 +13,7 @@ class OfferDTO extends BaseDTO {
     public $parameters;
     public $debtorsBases;
 
-    public function offerParameters($offerParameters) {
+    protected function offerParameters($offerParameters) {
         if (!empty($offerParameters)) {
             foreach ($offerParameters as $offerParameter) {
                 $this->parameters[$offerParameter->parameterId] = new ParameterDTO($offerParameter);
@@ -21,7 +21,7 @@ class OfferDTO extends BaseDTO {
         }
     }
 
-    public function offerDebtorsBases($offerDebtorsBases) {
+    protected function offerDebtorsBases($offerDebtorsBases) {
         if (!empty($offerDebtorsBases)) {
             foreach ($offerDebtorsBases as $offerDebtorsBase) {
                 $this->debtorsBases[$offerDebtorsBase->debtorsBaseId] = new DebtorsBaseDTO($offerDebtorsBase);
@@ -29,7 +29,7 @@ class OfferDTO extends BaseDTO {
         }
     }
 
-    public function lender($lender) {
+    protected function lender($lender) {
         if (!empty($lender)) {
             $this->lender = new LenderDTO($lender);
         }
