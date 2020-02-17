@@ -26,14 +26,16 @@ class OfferDTO extends BaseDTO {
             }
 
             foreach ($offerParameters as $offerParameter) {
-                $this->parameters[$offerParameter->parameterId] = new ParameterDTO($offerParameter);
+                $this->parameters[$offerParameter->parameter->slug] = new ParameterDTO($offerParameter);
             }
         }
     }
 
     protected function offerParametersForRanking($offerParameters) {
         foreach ($offerParameters as $offerParameter) {
-            $this->parameters[$offerParameter->parameterId] = new ParameterDTO($offerParameter);
+            if (!empty($this->rankingParameters[$offerParameter->parameterId])) {
+                $this->parameters[$this->rankingParameters[$offerParameter->parameterId]] = new ParameterDTO($offerParameter);
+            }
         }
         ksort($this->parameters);
     }
