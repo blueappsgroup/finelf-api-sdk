@@ -24,7 +24,6 @@ class LenderDTO extends BaseDTO {
             foreach ($offers as $offer) {
                 $this->offers[$offer->type][$offer->id] = new OfferDTO($offer);
             }
-            ksort($this->offers);
         }
     }
 }
