@@ -6,8 +6,6 @@ class OfferModule extends BaseModule {
     protected $baseRoute = 'offers';
 
     public function get($id) {
-        $data = parent::get('/' . $this->baseRoute . '/' . $id);
-
-        return $data;
+        return parent::get('/' . $this->baseRoute . '/' . $id);
     }
 }

@@ -21,6 +21,7 @@ class RankingDTO extends BaseDTO {
             foreach ($rankingOffers as $rankingOffer) {
                 $this->offers[$rankingOffer->priority] = new OfferDTO($rankingOffer->offer, $this->parameters);
             }
+
             ksort($this->offers);
         }
     }

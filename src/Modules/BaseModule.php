@@ -2,7 +2,9 @@
 
 namespace Finelf\Modules;
 
+use Error;
 use GuzzleHttp\Client;
+use LogicException;
 use function json_decode;
 
 abstract class BaseModule {
@@ -13,7 +15,7 @@ abstract class BaseModule {
         $this->apiClient = $apiClient;
 
         if (!isset($this->baseRoute)) {
-            throw new \LogicException(get_class($this) . ' must have a $baseRoute');
+            throw new LogicException(get_class($this) . ' must have a $baseRoute');
         }
     }
 
@@ -22,7 +24,7 @@ abstract class BaseModule {
             $response = $this->apiClient->get($uri);
 
             return json_decode($response->getBody());
-        } catch (\Error $e) {
+        } catch (Error $e) {
             error_log($e->getMessage());
         }
     }

@@ -1,13 +1,14 @@
 {
     "name": "blueappsgroup/finelf-api-sdk",
     "description": "SDK for Finelf.com API",
-    "version":"0.0.20",
+    "version":"1.0.0",
     "license": "MIT",
     "type": "library",
     "homepage": "https://finelf.com",
     "require": {
         "php": ">=7.3",
-        "eljam/guzzle-jwt-middleware": "^0.7.0"
+        "eljam/guzzle-jwt-middleware": "^0.7.0",
+        "ext-json": "*"
     },
     "config": {
         "optimize-autoloader": true,

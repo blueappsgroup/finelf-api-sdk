@@ -2,6 +2,8 @@
 
 namespace Finelf\DTO;
 
+use stdClass;
+
 class OfferDTO extends BaseDTO {
     protected $rankingParametersPriority = [];
     public $name;
@@ -14,14 +16,15 @@ class OfferDTO extends BaseDTO {
     public $parameters;
     public $debtorsBases;
 
-    public function __construct(\stdClass $jsonObject, $rankingParametersPriority = []) {
+    public function __construct(stdClass $jsonObject, $rankingParametersPriority = []) {
         $this->rankingParametersPriority = $rankingParametersPriority;
+
         parent::__construct($jsonObject);
     }
 
     protected function offerParameters($offerParameters) {
         if (!empty($offerParameters)) {
-            if (!empty($this->rankingParametersPriority)) {
+            if (count($this->rankingParametersPriority) > 0) {
                 return $this->offerParametersForRanking($offerParameters);
             }
 
@@ -37,6 +40,7 @@ class OfferDTO extends BaseDTO {
                 $this->parameters[$this->rankingParametersPriority[$offerParameter->parameterId]] = new ParameterDTO($offerParameter);
             }
         }
+
         ksort($this->parameters);
     }
 
