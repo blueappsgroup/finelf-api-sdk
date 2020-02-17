@@ -22,8 +22,9 @@ class LenderDTO extends BaseDTO {
     protected function offers($offers) {
         if (!empty($offers)) {
             foreach ($offers as $offer) {
-                $this->offers[$offer->id] = new OfferDTO($offer);
+                $this->offers[$offer->type][$offer->id] = new OfferDTO($offer);
             }
+            ksort($this->offers);
         }
     }
 }
