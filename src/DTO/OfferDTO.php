@@ -24,7 +24,7 @@ class OfferDTO extends BaseDTO {
 
     protected function offerParameters($offerParameters) {
         if (!empty($offerParameters)) {
-            if (count($this->rankingParametersPriority) > 0) {
+            if (!empty($this->rankingParametersPriority)) {
                 return $this->offerParametersForRanking($offerParameters);
             }
 
