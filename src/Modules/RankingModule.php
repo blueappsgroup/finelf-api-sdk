@@ -7,8 +7,12 @@ use Finelf\DTO\RankingDTO;
 class RankingModule extends BaseModule {
     protected $baseRoute = 'rankings';
 
-    public function get($id) {
-        $data = parent::get('/' . $this->baseRoute . '/' . $id);
+    public function getById(int $id) : RankingDTO {
+        $data = new \stdClass();
+
+        if($id) {
+            $data = parent::get($id);
+        }
 
         return new RankingDTO($data);
     }
