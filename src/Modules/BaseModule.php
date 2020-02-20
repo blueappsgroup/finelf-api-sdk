@@ -21,7 +21,7 @@ abstract class BaseModule {
 
     public function get(string $uri) {
         try {
-            $response = $this->apiClient->get($uri);
+            $response = $this->apiClient->get('/' . $this->baseRoute . '/'.$uri);
 
             return json_decode($response->getBody());
         } catch (Error $e) {

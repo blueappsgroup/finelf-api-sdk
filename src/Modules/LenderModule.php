@@ -7,9 +7,14 @@ use Finelf\DTO\LenderDTO;
 class LenderModule extends BaseModule {
     protected $baseRoute = 'lenders';
 
-    public function get($id) {
-        $data = parent::get('/' . $this->baseRoute . '/' . $id);
+    public function getById(int $id) : LenderDTO {
+        $data = new \stdClass();
+
+        if($id) {
+            $data = parent::get($id);
+        }
 
         return new LenderDTO($data);
     }
+
 }
