@@ -11,7 +11,7 @@ class PingModule extends BaseModule {
         $data = parent::get('');
 
         if(is_object($data)) {
-            if(!empty($data->greeting) && $data->greeting === 'Welcome to Finelf Assistant API') {
+            if(!empty($data->greeting) && $data->greeting === 'Welcome to Finelf API') {
                 return true;
             }
         }
