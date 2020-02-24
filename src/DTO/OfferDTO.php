@@ -12,6 +12,7 @@ class OfferDTO extends BaseDTO {
     public $prettyLink;
     public $promotionDate;
     public $isHotOffer;
+    public $isActive;
     public $lender;
     public $parameters;
     public $debtorsBases;
