@@ -36,7 +36,7 @@ class OfferDTO extends BaseDTO {
 
     protected function offerParametersForRanking($offerParameters) {
         foreach ($offerParameters as $offerParameter) {
-            if (!empty($this->rankingParametersPriority[$offerParameter->parameterId])) {
+            if (isset($this->rankingParametersPriority[$offerParameter->parameterId])) {
                 $this->parameters[$this->rankingParametersPriority[$offerParameter->parameterId]] = new ParameterDTO($offerParameter);
             }
         }
