@@ -8,7 +8,11 @@ class ParameterDTO extends BaseDTO {
     public $value;
     public $slug;
 
-    private function formatValue($prefix, $suffix, $value) {
+    private function formatValue($prefix, $suffix, $value, $type) {
+        if ($type === 4) { // boolean
+            return $value === '1' ? 'Tak' : 'Nie';
+        }
+
         if (!empty($prefix)) {
             $prefix .= ' ';
         }
@@ -24,6 +28,6 @@ class ParameterDTO extends BaseDTO {
         $this->name  = $parameter->name;
         $this->type  = $parameter->type;
         $this->slug  = $parameter->slug;
-        $this->value = $this->formatValue($parameter->prefix, $parameter->suffix, $this->value);
+        $this->value = $this->formatValue($parameter->prefix, $parameter->suffix, $this->value, $parameter->type);
     }
 }
