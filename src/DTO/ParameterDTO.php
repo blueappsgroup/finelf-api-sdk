@@ -2,6 +2,8 @@
 
 namespace Finelf\DTO;
 
+use function json_decode;
+
 class ParameterDTO extends BaseDTO {
     public $name;
     public $type;
@@ -11,6 +13,10 @@ class ParameterDTO extends BaseDTO {
     private function formatValue($prefix, $suffix, $value, $type) {
         if ($type === 4) { // boolean
             return $value === '1' ? 'Tak' : 'Nie';
+        }
+
+        if($type === 5) { //json
+            return json_decode($value);
         }
 
         if (!empty($prefix)) {
