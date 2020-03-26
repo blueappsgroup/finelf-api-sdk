@@ -14,7 +14,7 @@ class RankingDTO extends BaseDTO {
     protected function rankingParameters($rankingParameters) {
         if (!empty($rankingParameters)) {
             foreach ($rankingParameters as $rankingParameter) {
-                $this->parameters[$rankingParameter->parameterId] = $rankingParameter->priority;
+                $this->parameters[$rankingParameter->parameter->slug] = $rankingParameter->priority;
             }
         }
     }
