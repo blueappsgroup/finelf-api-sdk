@@ -6,12 +6,11 @@ use stdClass;
 
 class OfferDTO extends BaseDTO {
     protected $rankingParametersPriority = [];
+    public $id;
     public $name;
     public $type;
     public $affiliateLink;
     public $prettyLink;
-    public $promotionDate;
-    public $isHotOffer;
     public $isActive;
     public $lender;
     public $parameters;
