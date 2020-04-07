@@ -2,6 +2,7 @@
 
 namespace Finelf\DTO;
 
+use function array_key_exists;
 use function json_decode;
 
 class ParameterDTO extends BaseDTO {
@@ -10,7 +11,7 @@ class ParameterDTO extends BaseDTO {
         5 => 'formatJSONValue',
         6 => 'formatDateTimeRangeValue'
     ];
-    private const DATETIME_RANGE_SETTINGS = [
+    private const DATE_TIME_RANGE_SETTINGS = [
         'days'     => [
             365,
             30,
@@ -30,14 +31,16 @@ class ParameterDTO extends BaseDTO {
     public $value;
     public $slug;
 
-    protected function parameter($parameter) {
+    protected function parameter(object $parameter) {
+        $prefix      = $parameter->prefix === null ? '' : $parameter->prefix;
+        $suffix      = $parameter->suffix === null ? '' : $parameter->suffix;
         $this->name  = $parameter->name;
         $this->type  = $parameter->type;
         $this->slug  = $parameter->slug;
-        $this->value = $this->formatValue($parameter->prefix, $parameter->suffix, $this->value, $parameter->type);
+        $this->value = $this->formatValue($prefix, $suffix, $this->value, $parameter->type);
     }
 
-    private function formatValue($prefix, $suffix, $value, $type) {
+    private function formatValue(string $prefix, string $suffix, string $value, int $type) {
         if (isset(self::SPECIAL_TYPES[ $type ])) {
             return $this->{self::SPECIAL_TYPES[ $type ]}($value);
         }
@@ -53,33 +56,34 @@ class ParameterDTO extends BaseDTO {
         return $prefix . $value . $suffix;
     }
 
-    private function formatBooleanValue($value) {
+    private function formatBooleanValue(string $value): string {
         return $value === '1' ? 'Tak' : 'Nie';
     }
 
-    private function formatJSONValue($value) {
+    private function formatJSONValue(string $value): array {
         return json_decode(rawurldecode($value));
     }
 
-    private function formatDateTimeRangeValue($value) {
+    private function formatDateTimeRangeValue(string $value): string {
         $values = explode('-', $value);
+        $from   = array_key_exists(0, $values) ? intval($values[0]) : 0;
+        $to     = array_key_exists(1, $values) ? intval($values[1]) : 0;
 
-        if (count($values) == 2) {
-            $from = intval($values[0]);
-            $to   = intval($values[1]);
-
-            if ($from && $to) {
-                return $this->dateTimeRangeValueCalculate($from, $to);
-            }
+        if ($from && $to) {
+            return $this->dateTimeRangeValueCalculate($from, $to);
         }
+
+        return '';
     }
 
-    private function dateTimeRangeValueCalculate($from, $to, $unit = 0) {
-        if (($from % self::DATETIME_RANGE_SETTINGS['days'][ $unit ]) == 0 && ($to % self::DATETIME_RANGE_SETTINGS['days'][ $unit ]) == 0) {
-            $fromValue = $from / self::DATETIME_RANGE_SETTINGS['days'][ $unit ];
-            $toValue   = $to / self::DATETIME_RANGE_SETTINGS['days'][ $unit ];
+    private function dateTimeRangeValueCalculate(int $from, int $to, int $unit = 0): string {
+        $days = self::DATE_TIME_RANGE_SETTINGS['days'][ $unit ];
 
-            return $fromValue . '-' . $toValue . ' ' . self::DATETIME_RANGE_SETTINGS['suffixes'][ $unit ];
+        if (($from % $days) == 0 && ($to % $days) == 0) {
+            $fromValue = $from / $days;
+            $toValue   = $to / $days;
+
+            return $fromValue . '-' . $toValue . ' ' . self::DATE_TIME_RANGE_SETTINGS['suffixes'][ $unit ];
         }
 
         return $this->dateTimeRangeValueCalculate($from, $to, $unit + 1);
