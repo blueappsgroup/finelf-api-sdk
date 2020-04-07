@@ -86,6 +86,10 @@ class ParameterDTO extends BaseDTO {
             return $fromValue . '-' . $toValue . ' ' . self::DATE_TIME_RANGE_SETTINGS['suffixes'][ $unit ];
         }
 
+        if ($unit > (count(self::DATE_TIME_RANGE_SETTINGS['days']) - 1)) {
+            return '';
+        }
+
         return $this->dateTimeRangeValueCalculate($from, $to, $unit + 1);
     }
 }
