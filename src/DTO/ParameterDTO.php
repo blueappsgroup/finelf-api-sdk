@@ -10,6 +10,21 @@ class ParameterDTO extends BaseDTO {
         5 => 'formatJSONValue',
         6 => 'formatDateTimeRangeValue'
     ];
+    private const DATETIME_RANGE_SETTINGS = [
+        'days'     => [
+            365,
+            30,
+            7,
+            1
+        ],
+        'suffixes' => [
+            'lat',
+            'miesięcy',
+            'tygodni',
+            'dni'
+        ]
+    ];
+
     public $name;
     public $type;
     public $value;
@@ -43,49 +58,30 @@ class ParameterDTO extends BaseDTO {
     }
 
     private function formatJSONValue($value) {
-        return json_decode($value);
+        return json_decode(rawurldecode($value));
     }
 
     private function formatDateTimeRangeValue($value) {
-        if (preg_match('/^[0-9]+-[0-9]+$/', $value)) {
-            $days     = [
-                'inYear'  => 365,
-                'inMonth' => 30,
-                'inWeek'  => 7
-            ];
-            $suffixes = [
-                'days'   => 'dni',
-                'weeks'  => 'tygodni',
-                'months' => 'miesięcy',
-                'years'  => 'lat'
-            ];
+        $values = explode('-', $value);
 
-            $values = explode('-', $value);
-            $from   = $values[0];
-            $to     = $values[1];
+        if (count($values) == 2) {
+            $from = intval($values[0]);
+            $to   = intval($values[1]);
 
-            if (($from % $days['inYear']) == false && ($to % $days['inYear']) == false) {
-                $fromValue = $from / $days['inYear'];
-                $toValue   = $to / $days['inYear'];
-
-                return $fromValue . '-' . $toValue . ' ' . $suffixes['years'];
+            if ($from && $to) {
+                return $this->dateTimeRangeValueCalculate($from, $to);
             }
-
-            if (($from % $days['inMonth']) == false && ($to % $days['inMonth']) == false) {
-                $fromValue = $from / $days['inMonth'];
-                $toValue   = $to / $days['inMonth'];
-
-                return $fromValue . '-' . $toValue . ' ' . $suffixes['months'];
-            }
-
-            if (($from % $days['inWeek']) == false && ($to % $days['inWeek']) == false) {
-                $fromValue = $from / $days['inWeek'];
-                $toValue   = $to / $days['inWeek'];
-
-                return $fromValue . '-' . $toValue . ' ' . $suffixes['weeks'];
-            }
-
-            return $from . '-' . $to . ' ' . $suffixes['days'];
         }
+    }
+
+    private function dateTimeRangeValueCalculate($from, $to, $unit = 0) {
+        if (($from % self::DATETIME_RANGE_SETTINGS['days'][ $unit ]) == 0 && ($to % self::DATETIME_RANGE_SETTINGS['days'][ $unit ]) == 0) {
+            $fromValue = $from / self::DATETIME_RANGE_SETTINGS['days'][ $unit ];
+            $toValue   = $to / self::DATETIME_RANGE_SETTINGS['days'][ $unit ];
+
+            return $fromValue . '-' . $toValue . ' ' . self::DATETIME_RANGE_SETTINGS['suffixes'][ $unit ];
+        }
+
+        return $this->dateTimeRangeValueCalculate($from, $to, $unit + 1);
     }
 }
