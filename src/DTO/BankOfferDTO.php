@@ -13,7 +13,7 @@ class BankOfferDTO extends BaseDTO {
     public $prettyLink;
     public $isActive;
     public $bank;
-    public $offerType;
+    public $productType;
     public $parameters;
     public $rate;
     public $rankingName;
@@ -59,9 +59,9 @@ class BankOfferDTO extends BaseDTO {
         }
     }
 
-    public function offerType($offerType) {
-        if (!empty($offerType)) {
-            $this->offerType = new BankOfferTypeDTO($offerType);
+    public function productType($productType) {
+        if (!empty($productType)) {
+            $this->productType = new BankProductTypeDTO($productType);
         }
     }
 }
