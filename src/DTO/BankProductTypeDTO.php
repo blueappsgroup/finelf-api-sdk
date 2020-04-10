@@ -4,7 +4,7 @@ namespace Finelf\DTO;
 
 use function json_decode;
 
-class BankOfferTypeDTO extends ParameterDTO {
+class BankProductTypeDTO extends ParameterDTO {
     public $id;
     public $name;
     public $offers;
