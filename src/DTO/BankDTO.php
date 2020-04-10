@@ -17,16 +17,16 @@ class BankDTO extends BaseDTO {
     public $email;
     public $www;
     public $logo;
-    public $products;
+    public $offers;
     public $rate;
 
-    protected function products($products) {
-        if (!empty($products)) {
-            foreach ($products as $product) {
-                $this->products[$product->id] = new BankProductDTO($product);
+    protected function offers($offers) {
+        if (!empty($offers)) {
+            foreach ($offers as $offer) {
+                $this->offers[$offer->id] = new BankOfferDTO($offer);
             }
 
-            ksort($this->products);
+            ksort($this->offers);
         }
     }
 

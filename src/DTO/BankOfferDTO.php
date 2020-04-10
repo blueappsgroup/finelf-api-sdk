@@ -12,9 +12,11 @@ class BankOfferDTO extends BaseDTO {
     public $affiliateLink;
     public $prettyLink;
     public $isActive;
-    public $product;
+    public $bank;
+    public $offerType;
     public $parameters;
     public $rate;
+    public $rankingName;
 
     public function __construct(stdClass $jsonObject, $rankingParametersPriority = []) {
         $this->rankingParametersPriority = $rankingParametersPriority;
@@ -44,9 +46,9 @@ class BankOfferDTO extends BaseDTO {
         ksort($this->parameters);
     }
 
-    protected function product($product) {
-        if (!empty($product)) {
-            $this->product = new BankProductDTO($product);
+    protected function bank($bank) {
+        if (!empty($bank)) {
+            $this->bank = new BankDTO($bank);
         }
     }
 
@@ -54,6 +56,12 @@ class BankOfferDTO extends BaseDTO {
         if (!empty($offerRatings)) {
             $offerRatings = reset($offerRatings);
             $this->rate = $offerRatings->rate;
+        }
+    }
+
+    public function offerType($offerType) {
+        if (!empty($offerType)) {
+            $this->offerType = new BankOfferTypeDTO($offerType);
         }
     }
 }
