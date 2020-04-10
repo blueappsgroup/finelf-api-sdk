@@ -6,21 +6,15 @@ class BankProductDTO extends BaseDTO {
     public $id;
     public $name;
     public $bank;
-    public $offers;
+    public $offersTypes;
 
-    protected function bank($bank) {
-        if (!empty($bank)) {
-            $this->bank = new BankDTO($bank);
-        }
-    }
-
-    protected function offers($offers) {
-        if (!empty($offers)) {
-            foreach ($offers as $offer) {
-                $this->offers[$offer->type][$offer->id] = new BankOfferDTO($offer);
+    protected function offersTypes($offersTypes) {
+        if (!empty($offersTypes)) {
+            foreach ($offersTypes as $offersType) {
+                $this->offersTypes[$offersType->id] = new BankOfferTypeDTO($offersType);
             }
 
-            ksort($this->offers);
+            ksort($this->offersTypes);
         }
     }
 }
