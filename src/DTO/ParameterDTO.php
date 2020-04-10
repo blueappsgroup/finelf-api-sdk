@@ -30,6 +30,7 @@ class ParameterDTO extends BaseDTO {
     public $type;
     public $value;
     public $slug;
+    public $description;
 
     protected function parameter(object $parameter) {
         $prefix      = $parameter->prefix === null ? '' : $parameter->prefix;
