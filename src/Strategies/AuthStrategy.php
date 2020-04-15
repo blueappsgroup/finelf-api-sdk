@@ -10,14 +10,10 @@ class AuthStrategy extends AbstractBaseAuthStrategy {
     public function configureOptions(OptionsResolver $resolver) {
         parent::configureOptions($resolver);
 
-        $resolver->setDefaults([
-            'username',
-            'password',
-            'client_id',
-            'client_secret',
-        ]);
+        $fields = ['username', 'password', 'client_id', 'client_secret'];
 
-        $resolver->setRequired(['username', 'password', 'client_id', 'client_secret']);
+        $resolver->setDefaults($fields);
+        $resolver->setRequired($fields);
     }
 
     public function getRequestOptions(): array {

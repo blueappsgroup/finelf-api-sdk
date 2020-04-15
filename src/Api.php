@@ -9,7 +9,7 @@ class Api {
     private static $instance;
     private $client;
 
-    public static function getInstance(string $username, string $password, string $clientID, string $clientSecret, string $apiURL) {
+    public static function getInstance(string $username, string $password, string $clientID, string $clientSecret, string $apiURL): Api {
         if (self::$instance === null) {
             self::$instance = new Api($username, $password, $clientID, $clientSecret, $apiURL);
         }
