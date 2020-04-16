@@ -1,6 +1,6 @@
 <?php
 
-namespace Finelf\Strategies;
+namespace Finelf_Api_Sdk\Strategies;
 
 use Eljam\GuzzleJwt\Strategy\Auth\AbstractBaseAuthStrategy;
 use GuzzleHttp\RequestOptions;

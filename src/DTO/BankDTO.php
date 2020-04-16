@@ -1,8 +1,9 @@
 <?php
 
-namespace Finelf\DTO;
+namespace Finelf_Api_Sdk\DTO;
 
-class BankDTO extends BaseDTO {
+class BankDTO extends BaseDTO
+{
     public $id;
     public $name;
     public $company;
@@ -20,8 +21,9 @@ class BankDTO extends BaseDTO {
     public $offers;
     public $rate;
 
-    protected function offers($offers) {
-        if (!empty($offers)) {
+    protected function offers($offers)
+    {
+        if ( ! empty($offers)) {
             foreach ($offers as $offer) {
                 $this->offers[$offer->id] = new BankOfferDTO($offer);
             }
@@ -30,10 +32,11 @@ class BankDTO extends BaseDTO {
         }
     }
 
-    protected function bankRatings($bankRatings) {
-        if (!empty($bankRatings)) {
+    protected function bankRatings($bankRatings)
+    {
+        if ( ! empty($bankRatings)) {
             $bankRatings = reset($bankRatings);
-            $this->rate = $bankRatings->rate;
+            $this->rate  = $bankRatings->rate;
         }
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Finelf\Modules;
+namespace Finelf_Api_Sdk\Modules;
 
 class BankUserRatingsModule extends BaseModule {
     protected $baseRoute = 'banks-user-ratings';

@@ -1,10 +1,10 @@
 <?php
 
-namespace Finelf;
+namespace Finelf_Api_Sdk;
 
 use Eljam\GuzzleJwt\JwtMiddleware;
 use Eljam\GuzzleJwt\Manager\JwtManager;
-use Finelf\Strategies\AuthStrategy;
+use Finelf_Api_Sdk\Strategies\AuthStrategy;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 
