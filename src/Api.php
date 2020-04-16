@@ -37,7 +37,7 @@ class Api
 
     public function __get($name)
     {
-        $class = 'Finelf\Modules\\'.ucfirst($name).'Module';
+        $class = 'Finelf_Api_Sdk\Modules\\'.ucfirst($name).'Module';
 
         if (class_exists($class)) {
             if ( ! isset($this->$name)) {
