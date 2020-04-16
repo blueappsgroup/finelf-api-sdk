@@ -16,4 +16,10 @@ class BankOfferModule extends BaseModule {
 
         return new BankOfferDTO($data);
     }
+
+    public function getTopRatedByUs(int $websiteId, int $productTypeId, int $count = 10) : array {
+        $data = parent::get('top-rated-by-us/' . $count . '/' . $productTypeId . '/' . $websiteId);
+
+        return $data->offers;
+    }
 }
