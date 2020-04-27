@@ -1,8 +1,8 @@
 <?php
 
-namespace Finelf\Modules;
+namespace Finelf_Api_Sdk\Modules;
 
-use Finelf\DTO\BankOfferDTO;
+use Finelf_Api_Sdk\DTO\BankOfferDTO;
 
 class BankOfferModule extends BaseModule {
     protected $baseRoute = 'bank/offers';

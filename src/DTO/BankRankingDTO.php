@@ -1,6 +1,6 @@
 <?php
 
-namespace Finelf\DTO;
+namespace Finelf_Api_Sdk\DTO;
 
 class BankRankingDTO extends BaseDTO {
     public $name;

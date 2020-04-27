@@ -1,8 +1,8 @@
 <?php
 
-namespace Finelf\Modules;
+namespace Finelf_Api_Sdk\Modules;
 
-use Finelf\DTO\RankingDTO;
+use Finelf_Api_Sdk\DTO\RankingDTO;
 
 class RankingModule extends BaseModule {
     protected $baseRoute = 'rankings';
