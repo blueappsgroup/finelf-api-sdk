@@ -2,7 +2,8 @@
 
 namespace Finelf_Api_Sdk\Modules;
 
-use Finelf\DTO\OfferDTO;
+
+use Finelf_Api_Sdk\DTO\OfferDTO;
 
 class OfferModule extends BaseModule {
     protected $baseRoute = 'offers';
@@ -17,15 +18,4 @@ class OfferModule extends BaseModule {
         return new OfferDTO($data);
     }
 
-    public function getTopRatedByUs(int $websiteId, int $type, int $count = 10) : array {
-        $data = parent::get('top-rated-by-us/' . $count . '/' . $type . '/' . $websiteId);
-
-        return $data->offers;
-    }
-
-    public function getTopRatedByUsers(int $websiteId, int $type, int $count = 10) : array {
-        $data = parent::get('top-rated-by-users/' . $count . '/' . $type . '/' . $websiteId);
-
-        return $data->offers;
-    }
 }
