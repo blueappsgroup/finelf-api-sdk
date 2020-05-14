@@ -84,6 +84,10 @@ class ParameterDTO extends BaseDTO {
             $fromValue = $from / $days;
             $toValue   = $to / $days;
 
+            if($fromValue == $toValue) {
+                return $fromValue . ' ' . self::DATE_TIME_SETTINGS['suffixes'][ $unit ];
+            }
+
             return $fromValue . '-' . $toValue . ' ' . self::DATE_TIME_RANGE_SETTINGS['suffixes'][ $unit ];
         }
 
