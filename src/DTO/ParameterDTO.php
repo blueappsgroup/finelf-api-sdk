@@ -7,6 +7,7 @@ use function json_decode;
 
 class ParameterDTO extends BaseDTO {
     private const SPECIAL_TYPES = [
+        1 => 'formatIntegerValue',
         4 => 'formatBooleanValue',
         5 => 'formatJSONValue',
         6 => 'formatDateTimeRangeValue'
@@ -55,6 +56,10 @@ class ParameterDTO extends BaseDTO {
         }
 
         return $prefix . $value . $suffix;
+    }
+
+    private function formatIntegerValue(string $value): string {
+        return number_format($value, 0, '.', ' ');
     }
 
     private function formatBooleanValue(string $value): string {
