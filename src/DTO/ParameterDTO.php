@@ -19,10 +19,10 @@ class ParameterDTO extends BaseDTO {
             1
         ],
         'suffixes' => [
-            'lat',
-            'miesięcy',
-            'tygodni',
-            'dni'
+            ['rok', 'lata', 'lat'],
+            ['miesiąc', 'miesiące', 'miesięcy'],
+            ['tydzień', 'tygodnie', 'tygodni'],
+            ['dzień', 'dni', 'dni']
         ]
     ];
 
@@ -85,10 +85,18 @@ class ParameterDTO extends BaseDTO {
             $toValue   = $to / $days;
 
             if($fromValue === $toValue) {
-                return $fromValue . ' ' . self::DATE_TIME_SETTINGS['suffixes'][ $unit ];
+                if ($fromValue === 1) {
+                    return $fromValue . ' ' . self::DATE_TIME_RANGE_SETTINGS['suffixes'][ $unit ][0];
+                }
+
+                if ($fromValue % 10 > 1 && $fromValue % 10 < 5 && !( $fromValue % 100 >= 10 && $fromValue % 100 <= 21)) {
+                    return $fromValue . ' ' . self::DATE_TIME_RANGE_SETTINGS['suffixes'][ $unit ][1];
+                }
+
+                return $fromValue . ' ' . self::DATE_TIME_RANGE_SETTINGS['suffixes'][ $unit ][2];
             }
 
-            return $fromValue . '-' . $toValue . ' ' . self::DATE_TIME_RANGE_SETTINGS['suffixes'][ $unit ];
+            return $fromValue . '-' . $toValue . ' ' . self::DATE_TIME_RANGE_SETTINGS['suffixes'][ $unit ][2];
         }
 
         if ($unit > (count(self::DATE_TIME_RANGE_SETTINGS['days']) - 1)) {
