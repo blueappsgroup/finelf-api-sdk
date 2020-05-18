@@ -7,6 +7,7 @@ use function json_decode;
 
 class ParameterDTO extends BaseDTO {
     private const SPECIAL_TYPES = [
+        1 => 'formatIntegerValue',
         4 => 'formatBooleanValue',
         5 => 'formatJSONValue',
         6 => 'formatDateTimeRangeValue'
@@ -57,6 +58,10 @@ class ParameterDTO extends BaseDTO {
         return $prefix . $value . $suffix;
     }
 
+    private function formatIntegerValue(string $value): string {
+        return number_format($value, 0, '.', ' ');
+    }
+
     private function formatBooleanValue(string $value): string {
         return $value === '1' ? 'Tak' : 'Nie';
     }
@@ -83,6 +88,10 @@ class ParameterDTO extends BaseDTO {
         if (($from % $days) == 0 && ($to % $days) == 0) {
             $fromValue = $from / $days;
             $toValue   = $to / $days;
+
+            if($fromValue == $toValue) {
+                return $fromValue . ' ' . self::DATE_TIME_SETTINGS['suffixes'][ $unit ];
+            }
 
             return $fromValue . '-' . $toValue . ' ' . self::DATE_TIME_RANGE_SETTINGS['suffixes'][ $unit ];
         }
