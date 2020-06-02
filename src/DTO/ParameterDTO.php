@@ -59,7 +59,7 @@ class ParameterDTO extends BaseDTO {
     }
 
     private function formatIntegerValue(string $value): string {
-        return number_format($value, 0, '.', ' ');
+        return number_format((float)$value, 0, '.', ' ');
     }
 
     private function formatBooleanValue(string $value): string {
