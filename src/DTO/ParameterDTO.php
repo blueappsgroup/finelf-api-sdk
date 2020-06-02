@@ -43,8 +43,10 @@ class ParameterDTO extends BaseDTO {
     }
 
     private function formatValue(string $prefix, string $suffix, string $value, int $type) {
+        $returnedValue = $value;
+
         if (isset(self::SPECIAL_TYPES[ $type ])) {
-            return $this->{self::SPECIAL_TYPES[ $type ]}($value);
+            $returnedValue = $this->{self::SPECIAL_TYPES[ $type ]}($value);
         }
 
         if (!empty($prefix)) {
@@ -52,10 +54,10 @@ class ParameterDTO extends BaseDTO {
         }
 
         if (!empty($suffix)) {
-            $value .= ' ';
+            $returnedValue .= ' ';
         }
 
-        return $prefix . $value . $suffix;
+        return $prefix . $returnedValue . $suffix;
     }
 
     private function formatIntegerValue(string $value): string {
