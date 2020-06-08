@@ -1,7 +1,7 @@
 {
     "name": "blueappsgroup/finelf-api-sdk",
     "description": "SDK for Finelf.com API",
-    "version":"1.2.0",
+    "version":"1.2.1",
     "license": "MIT",
     "type": "library",
     "homepage": "https://finelf.com",

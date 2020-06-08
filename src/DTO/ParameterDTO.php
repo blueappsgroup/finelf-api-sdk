@@ -57,6 +57,10 @@ class ParameterDTO extends BaseDTO {
             $returnedValue = $this->{self::SPECIAL_TYPES[ $type ]}( $value );
         }
 
+        if( is_array($returnedValue) ){
+            return $returnedValue;
+        }
+
         if ( ! empty( $prefix ) ) {
             $prefix .= ' ';
         }
