@@ -53,7 +53,7 @@ class OfferDTO extends BaseDTO {
     }
 
     protected function lender($lender) {
-        if (!empty($lender)) {
+        if (!empty($lender) && is_object($lender)) {
             $this->lender = new LenderDTO($lender);
         }
     }
