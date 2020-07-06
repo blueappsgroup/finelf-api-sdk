@@ -1,6 +1,6 @@
 <?php
 
-namespace Finelf_Api_Sdk\Helpers;
+namespace Finelf_Api_Sdk\Formatters;
 
 use function array_key_exists;
 use function count;
@@ -12,7 +12,7 @@ use function rawurldecode;
 use function str_replace;
 use function strpos;
 
-class ParameterHelper {
+class ParamFormatter {
     const SPECIAL_TYPES
         = [
             1 => 'formatNumberValue',

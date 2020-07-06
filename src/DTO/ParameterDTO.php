@@ -2,7 +2,7 @@
 
 namespace Finelf_Api_Sdk\DTO;
 
-use Finelf_Api_Sdk\Helpers\ParameterHelper;
+use Finelf_Api_Sdk\Formatters\ParamFormatter;
 
 class ParameterDTO extends BaseDTO {
     public $name;
@@ -17,6 +17,6 @@ class ParameterDTO extends BaseDTO {
         $this->name  = $parameter->name;
         $this->type  = $parameter->type;
         $this->slug  = $parameter->slug;
-        $this->value = ParameterHelper::formatValue( $prefix, $suffix, $this->value, $parameter->type );
+        $this->value = ParamFormatter::formatValue( $prefix, $suffix, $this->value, $parameter->type );
     }
 }
