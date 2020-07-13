@@ -42,7 +42,7 @@ class ParamFormatter {
 			$returnedValue .= ' ';
 		}
 
-		return $prefix . $returnedValue . $suffix;
+		return __( $prefix, 'finelf-ranking' ) . $returnedValue . __( $suffix, 'finelf-ranking' );
 	}
 
 	public static function formatRangeValue( string $value ): string {
