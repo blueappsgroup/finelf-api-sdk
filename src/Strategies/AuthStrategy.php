@@ -10,7 +10,7 @@ class AuthStrategy extends AbstractBaseAuthStrategy {
     public function configureOptions(OptionsResolver $resolver) {
         parent::configureOptions($resolver);
 
-        $fields = ['username', 'password', 'client_id', 'client_secret'];
+        $fields = ['username', 'password'];
 
         $resolver->setDefaults($fields);
         $resolver->setRequired($fields);
@@ -21,8 +21,6 @@ class AuthStrategy extends AbstractBaseAuthStrategy {
             RequestOptions::JSON    => [
                 'username'      => $this->options['username'],
                 'password'      => $this->options['password'],
-                'client_id'     => $this->options['client_id'],
-                'client_secret' => $this->options['client_secret'],
             ],
             RequestOptions::HEADERS => [
                 'Content-type' => 'application/json;charset=UTF-8',

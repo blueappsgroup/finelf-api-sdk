@@ -2,25 +2,21 @@
 
 namespace Finelf_Api_Sdk\Modules;
 
-use function array_intersect;
-use function explode;
+use Finelf_Api_Sdk\DTO\EntityDTO;
 use Finelf_Api_Sdk\DTO\OfferDTO;
-use function implode;
-use function in_array;
 
-class OfferModule extends BaseModule {
+class EntityModule extends BaseModule {
     const RELATIONS = [
-        'entity',
-        'product',
-        'parameters',
-        'debtorsBases',
+        'branches',
+        'data',
+        'offers',
     ];
-    protected $baseRoute = 'offers';
+    protected $baseRoute = 'entities';
 
-    public function getById(int $id, string $relations = ''): OfferDTO {
+    public function getById(int $id, string $relations = '') : EntityDTO {
         $data = new \stdClass();
 
-        if ($id) {
+        if($id) {
             if (!empty($relations)) {
                 $relationsArray = explode(',', $relations);
                 $relations = '';
@@ -37,7 +33,23 @@ class OfferModule extends BaseModule {
             $data = parent::get($id.$relations);
         }
 
-        return new OfferDTO($data);
+        return new EntityDTO($data);
+    }
+
+    public function getOffersByEntityId(int $id): array {
+        $data = [];
+
+        if($id) {
+            $offers = parent::get($id.'/offers');
+
+            if($offers) {
+                foreach ($offers as $offer) {
+                    $data[] = new OfferDTO($offer);
+                }
+            }
+        }
+
+        return $data;
     }
 
 }

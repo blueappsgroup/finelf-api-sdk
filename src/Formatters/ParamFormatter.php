@@ -42,7 +42,7 @@ class ParamFormatter {
 			$returnedValue .= ' ';
 		}
 
-		return __( $prefix, 'finelf-ranking' ) . $returnedValue . __( $suffix, 'finelf-ranking' );
+		return $prefix . $returnedValue . $suffix;
 	}
 
 	public static function formatRangeValue( string $value ): string {
@@ -64,7 +64,7 @@ class ParamFormatter {
 	}
 
 	public static function formatBooleanValue( string $value ): string {
-		return $value === '1' ? __( 'Tak', 'finelf-ranking' ) : __( 'Nie', 'finelf-ranking' );
+		return $value === '1' ? 'Tak' : 'Nie';
 	}
 
 	public static function formatJSONValue( string $value ): array {
@@ -118,10 +118,10 @@ class ParamFormatter {
 
 	public static function getDateTimeRangeSuffix( int $unit, int $element ): string {
 		$suffixes = [
-			[ __( 'rok', 'finelf-ranking' ), __( 'lata', 'finelf-ranking' ), __( 'lat', 'finelf-ranking' ) ],
-			[ __( 'miesiąc', 'finelf-ranking' ), __( 'miesiące', 'finelf-ranking' ), __( 'miesięcy', 'finelf-ranking' ) ],
-			[ __( 'tydzień', 'finelf-ranking' ), __( 'tygodnie', 'finelf-ranking' ), __( 'tygodni', 'finelf-ranking' ) ],
-			[ __( 'dzień', 'finelf-ranking' ), __( 'dni', 'finelf-ranking' ), __( 'dni', 'finelf-ranking' ) ],
+			[ 'rok', 'lata', 'lat' ],
+			[ 'miesiąc', 'miesiące', 'miesięcy' ],
+			[ 'tydzień', 'tygodnie', 'tygodni' ],
+			[ 'dzień', 'dni', 'dni' ],
 		];
 
 		return $suffixes[ $unit ][ $element ];

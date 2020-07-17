@@ -11,15 +11,11 @@ use GuzzleHttp\HandlerStack;
 class ApiClient {
     private $username;
     private $password;
-    private $clientID;
-    private $clientSecret;
     private $uri;
 
     public function __construct(array $authData) {
         $this->username     = $authData['username'];
         $this->password     = $authData['password'];
-        $this->clientID     = $authData['clientID'];
-        $this->clientSecret = $authData['clientSecret'];
         $this->uri          = $authData['uri'];
     }
 
@@ -39,7 +35,7 @@ class ApiClient {
         $authStrategy        = $this->createAuthStrategy();
         $persistenceStrategy = null;
 
-        return new JwtManager($authClient, $authStrategy, $persistenceStrategy, ['token_url' => '/auth/login', 'token_key' => 'accessToken']);
+        return new JwtManager($authClient, $authStrategy, $persistenceStrategy, ['token_url' => '/api/auth/login', 'token_key' => 'token']);
     }
 
     private function createClient(): Client {
@@ -50,8 +46,6 @@ class ApiClient {
         return new AuthStrategy([
             'username'      => $this->username,
             'password'      => $this->password,
-            'client_id'     => $this->clientID,
-            'client_secret' => $this->clientSecret,
         ]);
     }
 }
