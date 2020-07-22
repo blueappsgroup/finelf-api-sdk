@@ -8,7 +8,7 @@ class BranchDTO extends BaseDTO {
     public $logo;
     public $entities;
 
-    protected function entities($entities) {
+    protected function entities(array $entities) {
         if ( ! empty($entities)) {
             foreach ($entities as $entity) {
                 $this->entities[$entity->id] = new EntityDTO($entity);

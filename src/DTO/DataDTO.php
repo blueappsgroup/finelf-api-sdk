@@ -7,8 +7,8 @@ class DataDTO extends BaseDTO {
     public $value;
     public $slug;
 
-    protected function data( object $data ) {
-        $this->name  = $data->name;
-        $this->slug  = $data->slug;
+    protected function data(object $data) {
+        $this->name = $data->name;
+        $this->slug = $data->slug;
     }
 }

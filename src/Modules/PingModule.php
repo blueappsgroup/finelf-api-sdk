@@ -7,7 +7,7 @@ use function is_object;
 class PingModule extends BaseModule {
     protected $baseRoute = 'ping';
 
-    public function checkConnection() {
+    public function checkConnection(): bool {
         $data = parent::get('');
 
         if(is_object($data)) {

@@ -5,7 +5,6 @@ namespace Finelf_Api_Sdk\DTO;
 use stdClass;
 
 class OfferDTO extends BaseDTO {
-    protected $rankingsParametersPriority = [];
     public $id;
     public $name;
     public $product;
@@ -15,6 +14,7 @@ class OfferDTO extends BaseDTO {
     public $entity;
     public $parameters;
     public $debtorsBases;
+    protected $rankingsParametersPriority = [];
 
     public function __construct(stdClass $jsonObject, $rankingsParametersPriority = []) {
         $this->rankingsParametersPriority = $rankingsParametersPriority;
@@ -22,9 +22,9 @@ class OfferDTO extends BaseDTO {
         parent::__construct($jsonObject);
     }
 
-    protected function offersParameters($offersParameters) {
-        if (!empty($offersParameters)) {
-            if (!empty($this->rankingsParametersPriority)) {
+    protected function offersParameters(array $offersParameters) {
+        if ( ! empty($offersParameters)) {
+            if ( ! empty($this->rankingsParametersPriority)) {
                 return $this->offersParametersForRanking($offersParameters);
             }
 
@@ -34,7 +34,7 @@ class OfferDTO extends BaseDTO {
         }
     }
 
-    protected function offersParametersForRanking($offerParameters) {
+    protected function offersParametersForRanking(array $offerParameters) {
         foreach ($offerParameters as $offerParameter) {
             if (isset($this->rankingsParametersPriority[$offerParameter->parameter->slug])) {
                 $this->parameters[$offerParameter->parameter->slug] = new ParameterDTO($offerParameter);
@@ -42,22 +42,22 @@ class OfferDTO extends BaseDTO {
         }
     }
 
-    protected function offersDebtorsBases($offersDebtorsBases) {
-        if (!empty($offersDebtorsBases)) {
+    protected function offersDebtorsBases(array $offersDebtorsBases) {
+        if ( ! empty($offersDebtorsBases)) {
             foreach ($offersDebtorsBases as $offersDebtorsBase) {
                 $this->debtorsBases[$offersDebtorsBase->debtorsBaseId] = new DebtorsBaseDTO($offersDebtorsBase);
             }
         }
     }
 
-    protected function entity($entity) {
-        if (!empty($entity) && is_object($entity)) {
+    protected function entity(object $entity) {
+        if ( ! empty($entity)) {
             $this->entity = new EntityDTO($entity);
         }
     }
 
-    protected function product($product) {
-        if (!empty($product) && is_object($product)) {
+    protected function product(object $product) {
+        if ( ! empty($product)) {
             $this->product = new ProductDTO($product);
         }
     }
