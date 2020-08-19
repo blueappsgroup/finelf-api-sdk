@@ -11,18 +11,18 @@ class RankingDTO extends BaseDTO {
     public $parameters;
     public $offers;
 
-    protected function rankingParameters($rankingParameters) {
-        if (!empty($rankingParameters)) {
-            foreach ($rankingParameters as $rankingParameter) {
-                $this->parameters[$rankingParameter->parameter->slug] = $rankingParameter->priority;
+    protected function rankingsParameters(array $rankingsParameters) {
+        if ( ! empty($rankingsParameters)) {
+            foreach ($rankingsParameters as $rankingsParameter) {
+                $this->parameters[$rankingsParameter->parameter->slug] = $rankingsParameter->priority;
             }
         }
     }
 
-    protected function rankingOffers($rankingOffers) {
-        if (!empty($rankingOffers)) {
-            foreach ($rankingOffers as $rankingOffer) {
-                $this->offers[$rankingOffer->priority] = new OfferDTO($rankingOffer->offer, $this->parameters);
+    protected function rankingsOffers(array $rankingsOffers) {
+        if ( ! empty($rankingsOffers)) {
+            foreach ($rankingsOffers as $rankingsOffer) {
+                $this->offers[$rankingsOffer->priority] = new OfferDTO($rankingsOffer->offer, $this->parameters);
             }
 
             ksort($this->offers);

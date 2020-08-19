@@ -7,13 +7,15 @@ use Finelf_Api_Sdk\DTO\RankingDTO;
 class RankingModule extends BaseModule {
     protected $baseRoute = 'rankings';
 
-    public function getById(int $id) : RankingDTO {
-        $data = new \stdClass();
-
-        if($id) {
-            $data = parent::get($id);
+    public function getById(int $id, string $relations = '') : RankingDTO {
+        if (empty($id)) {
+            return new RankingDTO([]);
         }
 
-        return new RankingDTO($data);
+        if ( ! empty($relations)) {
+            $id .= '?relations='.$relations;
+        }
+
+        return new RankingDTO(parent::get($id));
     }
 }

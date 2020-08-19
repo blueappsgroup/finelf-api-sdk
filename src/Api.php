@@ -10,25 +10,23 @@ class Api
     private static $instance;
     private $client;
 
-    public static function getInstance(string $username, string $password, string $clientID, string $clientSecret, string $apiURL): Api
+    public static function getInstance(string $username, string $password, string $apiURL): Api
     {
-        $can_connect = ! empty($username) && ! empty($password) && ! empty($clientID) && ! empty($clientSecret) && ! empty($apiURL);
+        $can_connect = ! empty($username) && ! empty($password) && ! empty($apiURL);
 
         if ($can_connect && self::$instance === null) {
-            self::$instance = new Api($username, $password, $clientID, $clientSecret, $apiURL);
+            self::$instance = new Api($username, $password, $apiURL);
         }
 
         return self::$instance;
     }
 
-    public function __construct(string $username, string $password, string $clientID, string $clientSecret, string $apiURL)
+    public function __construct(string $username, string $password, string $apiURL)
     {
         $apiClient    = new ApiClient(
             [
                 'username'     => $username,
                 'password'     => $password,
-                'clientID'     => $clientID,
-                'clientSecret' => $clientSecret,
                 'uri'          => $apiURL,
             ]
         );
