@@ -14,30 +14,15 @@ class OfferDTO extends BaseDTO {
     public $entity;
     public $parameters;
     public $debtorsBases;
-    protected $rankingsParametersPriority = [];
 
-    public function __construct(stdClass $jsonObject, $rankingsParametersPriority = []) {
-        $this->rankingsParametersPriority = $rankingsParametersPriority;
-
+    public function __construct(stdClass $jsonObject) {
         parent::__construct($jsonObject);
     }
 
     protected function offersParameters(array $offersParameters) {
         if ( ! empty($offersParameters)) {
-            if ( ! empty($this->rankingsParametersPriority)) {
-                return $this->offersParametersForRanking($offersParameters);
-            }
-
             foreach ($offersParameters as $offersParameter) {
                 $this->parameters[$offersParameter->parameter->slug] = new ParameterDTO($offersParameter);
-            }
-        }
-    }
-
-    protected function offersParametersForRanking(array $offerParameters) {
-        foreach ($offerParameters as $offerParameter) {
-            if (isset($this->rankingsParametersPriority[$offerParameter->parameter->slug])) {
-                $this->parameters[$offerParameter->parameter->slug] = new ParameterDTO($offerParameter);
             }
         }
     }
