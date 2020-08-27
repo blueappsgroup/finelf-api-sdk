@@ -4,9 +4,11 @@ namespace Finelf_Api_Sdk;
 
 use Eljam\GuzzleJwt\JwtMiddleware;
 use Eljam\GuzzleJwt\Manager\JwtManager;
+use Eljam\GuzzleJwt\Persistence\SimpleCacheTokenPersistence;
 use Finelf_Api_Sdk\Strategies\AuthStrategy;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
+use Sabre\Cache\Memory;
 
 class ApiClient {
     private $username;
@@ -33,7 +35,7 @@ class ApiClient {
     private function createJwtManager(): JwtManager {
         $authClient          = $this->createClient();
         $authStrategy        = $this->createAuthStrategy();
-        $persistenceStrategy = null;
+	    $persistenceStrategy = new SimpleCacheTokenPersistence(new Memory());
 
         return new JwtManager($authClient, $authStrategy, $persistenceStrategy, ['token_url' => '/api/auth/login', 'token_key' => 'token']);
     }
