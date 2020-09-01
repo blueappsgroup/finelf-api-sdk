@@ -35,7 +35,7 @@ class ApiClient {
     private function createJwtManager(): JwtManager {
         $authClient          = $this->createClient();
         $authStrategy        = $this->createAuthStrategy();
-	    $persistenceStrategy = new SimpleCacheTokenPersistence(new Memory());
+	    $persistenceStrategy = new SimpleCacheTokenPersistence(new Memory(), 3600*60*2);
 
         return new JwtManager($authClient, $authStrategy, $persistenceStrategy, ['token_url' => '/api/auth/login', 'token_key' => 'token']);
     }
