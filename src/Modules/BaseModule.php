@@ -19,7 +19,7 @@ abstract class BaseModule {
         }
     }
 
-    public function get(string $uri) {
+    public function get(string $uri = '') {
         try {
             $response = $this->apiClient->get('/api/' . $this->baseRoute . '/'.$uri);
 
