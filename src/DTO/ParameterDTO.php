@@ -11,7 +11,7 @@ class ParameterDTO extends BaseDTO {
     public $slug;
     public $description;
 
-    protected function parameter(object $parameter) {
+    protected function parameter($parameter) {
         $prefix      = $parameter->prefix === null ? '' : $parameter->prefix;
         $suffix      = $parameter->suffix === null ? '' : $parameter->suffix;
         $this->name  = $parameter->name;

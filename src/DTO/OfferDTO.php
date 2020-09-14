@@ -36,13 +36,13 @@ class OfferDTO extends BaseDTO {
         }
     }
 
-    protected function entity(object $entity) {
+    protected function entity($entity) {
         if ( ! empty($entity)) {
             $this->entity = new EntityDTO($entity);
         }
     }
 
-    protected function product(object $product) {
+    protected function product($product) {
         if ( ! empty($product)) {
             $this->product = new ProductDTO($product);
         }

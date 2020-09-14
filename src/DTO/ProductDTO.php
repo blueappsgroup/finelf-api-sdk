@@ -8,7 +8,7 @@ class ProductDTO extends BaseDTO {
     public $productCategory;
     public $offers;
 
-    protected function productCategory(object $productCategory) {
+    protected function productCategory($productCategory) {
         if ( ! empty($productCategory)) {
             $this->productCategory = new ProductCategoryDTO($productCategory);
         }
