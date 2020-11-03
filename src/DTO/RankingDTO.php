@@ -9,12 +9,21 @@ class RankingDTO extends BaseDTO {
     public $hotOfferEnd;
     public $hotOfferId;
     public $parameters;
+    public $filters;
     public $offers;
 
     protected function rankingsParameters(array $rankingsParameters) {
         if ( ! empty($rankingsParameters)) {
             foreach ($rankingsParameters as $rankingsParameter) {
                 $this->parameters[$rankingsParameter->parameter->slug] = $rankingsParameter->priority;
+            }
+        }
+    }
+
+    protected function rankingsFilters(array $rankingsFilters) {
+        if ( ! empty($rankingsFilters)) {
+            foreach ($rankingsFilters as $rankingsFilter) {
+                $this->filters[$rankingsFilter->parameterId] = new ParameterDTO($rankingsFilter->parameter);
             }
         }
     }
