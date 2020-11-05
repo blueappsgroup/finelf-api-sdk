@@ -7,6 +7,8 @@ use Finelf_Api_Sdk\Formatters\ParamFormatter;
 class ParameterDTO extends BaseDTO {
 	public $name;
 	public $type;
+	public $prefix;
+	public $suffix;
 	public $value;
 	public $slug;
 	public $description;
@@ -19,8 +21,8 @@ class ParameterDTO extends BaseDTO {
 		$this->type     = $parameter->type;
 		$this->prefix   = $prefix;
 		$this->suffix   = $suffix;
-		$this->rawValue = $this->value;
 		$this->slug     = $parameter->slug;
 		$this->value    = ParamFormatter::formatValue( $prefix, $suffix, $this->value, $parameter->type );
+		$this->rawValue = ParamFormatter::formatRawValue( $this->value, $parameter->type );
 	}
 }

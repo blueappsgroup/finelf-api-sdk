@@ -6,6 +6,7 @@ use function array_key_exists;
 use function count;
 use function explode;
 use function intval;
+use function is_array;
 use function json_decode;
 use function number_format;
 use function rawurldecode;
@@ -43,6 +44,20 @@ class ParamFormatter {
 		}
 
 		return __( $prefix, 'finelf-ranking' ) . $returnedValue . __( $suffix, 'finelf-ranking' );
+	}
+
+	public static function formatRawValue( string $value, int $type ) {
+		$returnedValue = $value;
+
+		if ( isset( self::SPECIAL_TYPES[ $type ] ) ) {
+			$returnedValue = self::{self::SPECIAL_TYPES[ $type ]}( $value );
+		}
+
+		if ( is_array( $returnedValue ) ) {
+			return $returnedValue;
+		}
+
+		return $returnedValue;
 	}
 
 	public static function formatRangeValue( string $value ): string {
