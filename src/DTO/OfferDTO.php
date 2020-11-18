@@ -8,6 +8,7 @@ class OfferDTO extends BaseDTO {
     public $id;
     public $name;
     public $product;
+    public $productId;
     public $affiliateLink;
     public $prettyLink;
     public $displayName;
