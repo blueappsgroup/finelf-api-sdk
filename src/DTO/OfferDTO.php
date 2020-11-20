@@ -14,8 +14,8 @@ class OfferDTO extends BaseDTO {
     public $displayName;
     public $isActive;
     public $entity;
-    public $parameters;
-    public $debtorsBases;
+    public $parameters = [];
+    public $debtorsBases = [];
 
     public function __construct(stdClass $jsonObject) {
         parent::__construct($jsonObject);
