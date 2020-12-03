@@ -10,6 +10,7 @@ class RankingDTO extends BaseDTO {
     public $hotOfferId;
     public $enableFilters;
     public $enableDetails;
+    public $enableCalculations;
     public $parameters;
     public $filters;
     public $offers;
