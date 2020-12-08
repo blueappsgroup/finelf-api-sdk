@@ -11,18 +11,20 @@ class ParameterDTO extends BaseDTO {
 	public $suffix;
 	public $slug;
 	public $description;
+	public $basicValue;
 	public $rawValue;
 	public $value;
 
 	protected function parameter( $parameter ) {
-		$prefix         = $parameter->prefix === null ? '' : $parameter->prefix;
-		$suffix         = $parameter->suffix === null ? '' : $parameter->suffix;
-		$this->name     = $parameter->name;
-		$this->type     = $parameter->type;
-		$this->prefix   = $prefix;
-		$this->suffix   = $suffix;
-		$this->slug     = $parameter->slug;
-		$this->rawValue = ParamFormatter::formatRawValue( $this->value, $parameter->type );
-		$this->value    = ParamFormatter::formatValue( $prefix, $suffix, $this->value, $parameter->type );
+		$prefix           = $parameter->prefix === null ? '' : $parameter->prefix;
+		$suffix           = $parameter->suffix === null ? '' : $parameter->suffix;
+		$this->name       = $parameter->name;
+		$this->type       = $parameter->type;
+		$this->prefix     = $prefix;
+		$this->suffix     = $suffix;
+		$this->slug       = $parameter->slug;
+		$this->basicValue = $this->value;
+		$this->rawValue   = ParamFormatter::formatRawValue( $this->value, $parameter->type );
+		$this->value      = ParamFormatter::formatValue( $prefix, $suffix, $this->value, $parameter->type );
 	}
 }
