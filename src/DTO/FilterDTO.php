@@ -4,6 +4,7 @@ namespace Finelf_Api_Sdk\DTO;
 
 class FilterDTO extends BaseDTO {
 	public $name;
+	public $rangeType;
 	public $type;
 	public $prefix;
 	public $suffix;
