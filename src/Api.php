@@ -10,6 +10,18 @@ class Api
     private static $instance;
     private $client;
 
+    private function __construct(string $username, string $password, string $apiURL)
+    {
+        $apiClient    = new ApiClient(
+            [
+                'username' => $username,
+                'password' => $password,
+                'uri'      => $apiURL,
+            ]
+        );
+        $this->client = $apiClient->createApiClient();
+    }
+
     public static function getInstance(string $username, string $password, string $apiURL): Api
     {
         $can_connect = ! empty($username) && ! empty($password) && ! empty($apiURL);
@@ -21,16 +33,9 @@ class Api
         return self::$instance;
     }
 
-    public function __construct(string $username, string $password, string $apiURL)
+    public function __wakeup()
     {
-        $apiClient    = new ApiClient(
-            [
-                'username'     => $username,
-                'password'     => $password,
-                'uri'          => $apiURL,
-            ]
-        );
-        $this->client = $apiClient->createApiClient();
+        throw new \Exception('Singleton can not be unserialized');
     }
 
     public function __get($name)
@@ -44,5 +49,9 @@ class Api
 
             return $this->$name;
         }
+    }
+
+    private function __clone()
+    {
     }
 }
