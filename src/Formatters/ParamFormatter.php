@@ -22,7 +22,7 @@ class ParamFormatter {
 			5 => 'formatJSONValue',
 			6 => 'formatDateTimeRangeValue',
 		];
-	const DATE_TIME_RANGE_DAYS_OPTIONS = [ 365, 30, 7, 1, ];
+	const DATE_TIME_RANGE_DAYS_OPTIONS = [ 0 => 365, 1 => 30, 2 => 7, 3 => 1, ];
 
 	public static function formatValue( string $prefix, string $suffix, string $value, int $type ) {
 		$returnedValue = $value;
@@ -119,17 +119,6 @@ class ParamFormatter {
 		return self::dateTimeRangeValueCalculate( $from, $to, $unit + 1 );
 	}
 
-	public static function calculateDateTimeValue(int $value, string $rangeType): string {
-        $rangeTypesCalculations = [
-            'day'   => ParamFormatter::DATE_TIME_RANGE_DAYS_OPTIONS[3],
-            'week'  => ParamFormatter::DATE_TIME_RANGE_DAYS_OPTIONS[2],
-            'month' => ParamFormatter::DATE_TIME_RANGE_DAYS_OPTIONS[1],
-            'year'  => ParamFormatter::DATE_TIME_RANGE_DAYS_OPTIONS[0],
-        ];
-
-        return $value / $rangeTypesCalculations[ $rangeType ];
-    }
-
 	public static function formatSingleValueSuffix( $value, $unit ) {
 		if ( $value === 1 ) {
 			return $value . ' ' . self::getDateTimeRangeSuffix( $unit, 0 );
@@ -151,5 +140,16 @@ class ParamFormatter {
 		];
 
 		return $suffixes[ $unit ][ $element ];
+	}
+
+	public static function calculateDateTimeValue( int $value = 1, string $rangeType = 'day' ): string {
+		$rangeTypesCalculations = [
+			'day'   => ParamFormatter::DATE_TIME_RANGE_DAYS_OPTIONS[3],
+			'week'  => ParamFormatter::DATE_TIME_RANGE_DAYS_OPTIONS[2],
+			'month' => ParamFormatter::DATE_TIME_RANGE_DAYS_OPTIONS[1],
+			'year'  => ParamFormatter::DATE_TIME_RANGE_DAYS_OPTIONS[0],
+		];
+
+		return $value / $rangeTypesCalculations[ $rangeType ];
 	}
 }
