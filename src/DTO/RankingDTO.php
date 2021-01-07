@@ -26,7 +26,7 @@ class RankingDTO extends BaseDTO {
     protected function rankingsFilters(array $rankingsFilters) {
         if ( ! empty($rankingsFilters)) {
             foreach ($rankingsFilters as $rankingsFilter) {
-                $this->filters[$rankingsFilter->parameterId] = new FilterDTO($rankingsFilter->parameter);
+                $this->filters[$rankingsFilter->parameterId] = new FilterDTO($rankingsFilter->parameter, $rankingsFilter->rangeType);
             }
         }
     }

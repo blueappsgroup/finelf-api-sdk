@@ -11,12 +11,16 @@ class FilterDTO extends BaseDTO {
 	public $slug;
 	public $description;
 
+	public function __construct( $jsonObject, $rangeType) {
+		parent::__construct($jsonObject);
+
+		$this->rangeType = $rangeType;
+	}
 	protected function parameter( $parameter ) {
 		$this->name      = $parameter->name;
 		$this->type      = $parameter->type;
 		$this->prefix    = $parameter->prefix === null ? '' : $parameter->prefix;
 		$this->suffix    = $parameter->suffix === null ? '' : $parameter->suffix;
 		$this->slug      = $parameter->slug;
-		$this->rangeType = $parameter->rangeType;
 	}
 }
