@@ -12,10 +12,11 @@ class FilterDTO extends BaseDTO {
 	public $description;
 
 	protected function parameter( $parameter ) {
-		$this->name   = $parameter->name;
-		$this->type   = $parameter->type;
-		$this->prefix = $parameter->prefix === null ? '' : $parameter->prefix;
-		$this->suffix = $parameter->suffix === null ? '' : $parameter->suffix;
-		$this->slug   = $parameter->slug;
+		$this->name      = $parameter->name;
+		$this->type      = $parameter->type;
+		$this->prefix    = $parameter->prefix === null ? '' : $parameter->prefix;
+		$this->suffix    = $parameter->suffix === null ? '' : $parameter->suffix;
+		$this->slug      = $parameter->slug;
+		$this->rangeType = $parameter->rangeType;
 	}
 }
