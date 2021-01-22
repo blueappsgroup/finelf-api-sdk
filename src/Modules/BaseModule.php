@@ -21,7 +21,17 @@ abstract class BaseModule {
 
     public function get(string $uri = '') {
         try {
-            $response = $this->apiClient->get('/api/' . $this->baseRoute . '/'.$uri);
+            $response = $this->apiClient->get('/api/' . $this->baseRoute . '/' . $uri);
+
+            return json_decode($response->getBody());
+        } catch (Error $e) {
+            error_log($e->getMessage());
+        }
+    }
+
+    public function post(string $uri = '') {
+        try {
+            $response = $this->apiClient->post('/api/' . $this->baseRoute . '/' . $uri);
 
             return json_decode($response->getBody());
         } catch (Error $e) {

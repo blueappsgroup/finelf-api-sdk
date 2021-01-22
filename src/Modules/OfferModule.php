@@ -19,4 +19,12 @@ class OfferModule extends BaseModule {
         return new OfferDTO(parent::get($id));
     }
 
+    public function createClick(int $id): void {
+        if ( ! empty($id)) {
+            $id .= '/clicks';
+
+            parent::post($id);
+        }
+    }
+
 }
