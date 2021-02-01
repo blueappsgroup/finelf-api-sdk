@@ -4,8 +4,7 @@ namespace Finelf_Api_Sdk\DTO;
 
 use stdClass;
 
-class OfferDTO extends BaseDTO
-{
+class OfferDTO extends BaseDTO {
     public $id;
     public $name;
     public $product;
