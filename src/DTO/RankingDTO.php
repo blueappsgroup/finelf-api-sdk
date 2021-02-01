@@ -34,7 +34,7 @@ class RankingDTO extends BaseDTO {
     protected function rankingsOffers(array $rankingsOffers) {
         if ( ! empty($rankingsOffers)) {
             foreach ($rankingsOffers as $rankingsOffer) {
-                $this->offers[$rankingsOffer->priority] = new OfferDTO($rankingsOffer->offer);
+                $this->offers[$rankingsOffer->priority] = new OfferDTO($rankingsOffer->offer, $rankingsOffer);
             }
 
             ksort($this->offers);

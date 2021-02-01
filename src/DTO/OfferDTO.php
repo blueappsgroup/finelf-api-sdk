@@ -4,7 +4,8 @@ namespace Finelf_Api_Sdk\DTO;
 
 use stdClass;
 
-class OfferDTO extends BaseDTO {
+class OfferDTO extends BaseDTO
+{
     public $id;
     public $name;
     public $product;
@@ -19,11 +20,19 @@ class OfferDTO extends BaseDTO {
     public $parameters = [];
     public $debtorsBases = [];
 
-    public function __construct(stdClass $jsonObject) {
+    public function __construct(stdClass $jsonObject, stdClass $rankingsOffer = null)
+    {
+        if ($rankingsOffer !== null) {
+            $this->ranking = [
+                'tag' => $rankingsOffer->tag,
+            ];
+        }
+
         parent::__construct($jsonObject);
     }
 
-    protected function offersParameters(array $offersParameters) {
+    protected function offersParameters(array $offersParameters)
+    {
         if ( ! empty($offersParameters)) {
             foreach ($offersParameters as $offersParameter) {
                 $this->parameters[$offersParameter->parameter->slug] = new ParameterDTO($offersParameter);
@@ -31,7 +40,8 @@ class OfferDTO extends BaseDTO {
         }
     }
 
-    protected function offersDebtorsBases(array $offersDebtorsBases) {
+    protected function offersDebtorsBases(array $offersDebtorsBases)
+    {
         if ( ! empty($offersDebtorsBases)) {
             foreach ($offersDebtorsBases as $offersDebtorsBase) {
                 $this->debtorsBases[$offersDebtorsBase->debtorsBaseId] = new DebtorsBaseDTO($offersDebtorsBase);
@@ -39,13 +49,15 @@ class OfferDTO extends BaseDTO {
         }
     }
 
-    protected function entity($entity) {
+    protected function entity($entity)
+    {
         if ( ! empty($entity)) {
             $this->entity = new EntityDTO($entity);
         }
     }
 
-    protected function product($product) {
+    protected function product($product)
+    {
         if ( ! empty($product)) {
             $this->product = new ProductDTO($product);
         }
