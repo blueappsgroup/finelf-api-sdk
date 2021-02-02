@@ -7,9 +7,11 @@ use Finelf_Api_Sdk\DTO\OfferDTO;
 class OfferModule extends BaseModule {
 	protected $baseRoute = 'offers';
 
-	public function getById( int $id, string $relations = '' ): OfferDTO {
-		if ( empty( $id ) ) {
-			return new OfferDTO( [] );
+	public function getById( $id, string $relations = '' ): OfferDTO {
+        $id = intval($id);
+
+	    if ( empty( $id ) || $id === 0) {
+			return new OfferDTO( new \stdClass() );
 		}
 
 		if ( ! empty( $relations ) ) {
