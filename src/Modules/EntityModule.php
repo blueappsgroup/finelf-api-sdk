@@ -11,7 +11,7 @@ class EntityModule extends BaseModule
 
     public function getById(int $id, string $relations = ''): EntityDTO {
         if (empty($id)) {
-            return new EntityDTO([]);
+            return new EntityDTO(new \stdClass());
         }
 
         if ( ! empty($relations)) {

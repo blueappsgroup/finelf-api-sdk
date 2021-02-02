@@ -8,13 +8,11 @@ class BranchModule extends BaseModule {
     protected $baseRoute = 'branches';
 
     public function getById(int $id) : BranchDTO {
-        $data = new \stdClass();
-
-        if($id) {
-            $data = parent::get($id);
+        if (empty($id)) {
+            return new BranchDTO(new \stdClass());
         }
 
-        return new BranchDTO($data);
+        return new BranchDTO(parent::get($id));
     }
 
 }
