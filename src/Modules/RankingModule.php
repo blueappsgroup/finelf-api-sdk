@@ -9,7 +9,7 @@ class RankingModule extends BaseModule {
 
     public function getById(int $id, string $relations = '') : RankingDTO {
         if (empty($id)) {
-            return new RankingDTO([]);
+            return new RankingDTO(new \stdClass());
         }
 
         if ( ! empty($relations)) {

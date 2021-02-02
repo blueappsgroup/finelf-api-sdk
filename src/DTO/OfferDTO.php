@@ -19,7 +19,13 @@ class OfferDTO extends BaseDTO {
     public $parameters = [];
     public $debtorsBases = [];
 
-    public function __construct(stdClass $jsonObject) {
+    public function __construct(stdClass $jsonObject, stdClass $rankingsOffer = null) {
+        if ($rankingsOffer !== null) {
+            $this->ranking = [
+                'tag' => $rankingsOffer->tag,
+            ];
+        }
+
         parent::__construct($jsonObject);
     }
 
