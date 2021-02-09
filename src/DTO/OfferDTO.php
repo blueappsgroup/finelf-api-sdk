@@ -12,6 +12,7 @@ class OfferDTO extends BaseDTO {
     public $affiliateLink;
     public $prettyLink;
     public $displayName;
+    public $commission;
     public $clicksCount;
     public $isEnabled;
     public $isActive;
