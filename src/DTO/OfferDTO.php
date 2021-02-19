@@ -35,8 +35,6 @@ class OfferDTO extends BaseDTO {
 	}
 
 	protected function commission( $encodedCommission = '' ) {
-		$this->commission = [];
-
 		if ( ! empty( $encodedCommission ) ) {
 			$commission = json_decode( $encodedCommission );
 
@@ -57,12 +55,12 @@ class OfferDTO extends BaseDTO {
 					$amount_to     = $amount_values[1];
 				}
 
-				$this->commission = [
+				$this->commission[] = [
 					'period_from' => $period_from,
 					'period_to'   => $period_to,
 					'amount_from' => $amount_from,
 					'amount_to'   => $amount_to,
-					'value'   => $exploded_values[2],
+					'value'       => $exploded_values[2],
 				];
 			}
 		}
